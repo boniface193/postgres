@@ -112,3 +112,5 @@ SELECT a.name AS animal_name, vet.name AS vet_name, v.visit_date FROM visits v I
 SELECT COUNT(*) AS num_visits FROM visits v INNER JOIN vets vet ON v.vet_id = vet.id INNER JOIN animals a ON v.animal_id = a.id LEFT JOIN specializations spec ON vet.id = spec.vet_id WHERE spec.species_id IS NULL OR spec.species_id <> a.species_id;
 
 SELECT s.name AS specialty, COUNT(*) AS num_visits FROM visits v INNER JOIN animals a ON v.animal_id = a.id INNER JOIN owners o ON a.owner_id = o.id LEFT JOIN vets vet ON v.vet_id = vet.id LEFT JOIN specializations spec ON vet.id = spec.vet_id LEFT JOIN species s ON spec.species_id = s.id WHERE o.full_name = 'Maisy Smith' GROUP BY s.name ORDER BY num_visits DESC LIMIT 1;
+
+SELECT DISTINCT a.name AS animal_nam FROM visits v INNER JOIN animals a ON v.animal_id = a.id INNER JOIN vets vet ON v.vet_id = vet.id WHERE vet.name = 'Stephanie Mendez' AND v.visit_date >= '2020-04-01' AND v.visit_date <= '2020-08-30';
